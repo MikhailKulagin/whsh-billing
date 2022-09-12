@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=myusername
+      - POSTGRES_PASSWORD=mypassword
+    command: -p 5434
+    networks:
+      - whsh-network
+  app:
+    build: .
+    command: python service.py runserver 0.0.0.0:8008
+    volumes:
+      - .:/code
+    ports:
+      - "8008:8008"
+    depends_on:
+      - db
+    networks:
+      - whsh-network
+volumes:
+  pgdata:
+networks:
+  whsh-network:
+    driver: bridge

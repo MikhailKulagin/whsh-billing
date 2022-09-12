@@ -1,0 +1,16 @@
+version: "1.0.0"
+app_name: "wh-billing"
+port: 8008
+log:
+  name: "wh-billing"
+  level: INFO
+  format: "%(asctime)-15s %(name)-15s - %(levelname)-6s : %(message)s"
+db:
+  connection_string: postgresql://myusername:mypassword@localhost:5432/postgres
+  schema: billing
+  connect_args:
+    command_timeout: 30
+    server_settings: { 'application_name': 'wh-billing' }
+  log:
+    level: INFO
+accounting_url: http://localhost:8009

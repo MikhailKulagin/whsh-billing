@@ -1,0 +1,18 @@
+GET http://0.0.0.0:8008/top_10_invoices
+
+###
+
+POST http://0.0.0.0:8008/create_invoice
+Content-Type: application/json
+
+{
+  "id_account": 9999,
+  "operation": 100
+}
+
+###
+
+POST http://0.0.0.0:8008/send_invoices/?id_invoice=1
+Content-Type: application/json
+
+###
